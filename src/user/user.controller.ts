@@ -5,11 +5,6 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
-  getUsers(): string[] {
-    return this.userService.getUsers();
-  }
-
   @Post()
   async addUser(@Body() info): Promise<string[]> {
     return this.userService.addUser(info.name);
@@ -23,5 +18,10 @@ export class UserController {
   @Get('/:index')
   getUserName(@Param('index') index: number): string {
     return this.userService.getUserName(index);
+  }
+
+  @Get()
+  getUsers(): string[] {
+    return this.userService.getUsers();
   }
 }
